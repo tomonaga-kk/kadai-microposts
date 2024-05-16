@@ -30,22 +30,30 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // バリデーション
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // User情報をDBに保存
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        // ユーザー登録されたらメールアドレス認証用のメールを送る
+        // /vendor/laravel/framework/src/Illuminate/Auth/Events/Registerd.phpをインスタンス化し、イベント発火を認識させる
+        // /app/Providers/EventServiceProvider.phpでリッスンしているイベントが発火
+        // /vendor/laravel/framework/src/Illuminate/Auth/Listeners/SendEmailVerificationNotificationが実行される
         event(new Registered($user));
 
+        // ログインする
         Auth::login($user);
-
+        
+        // リダイレクト
         return redirect(RouteServiceProvider::HOME);
     }
 }

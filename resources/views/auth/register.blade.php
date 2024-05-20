@@ -25,6 +25,13 @@
             </div>
             
             <div class="form-control my-4">
+                <label for="password" class="label">
+                    <span class="label-text">Password</span>
+                </label>
+                <input type="password" name="password" class="input input-bordered w-full">
+            </div>
+            
+            <div class="form-control my-4">
                 <label for="password_confirmation" class="label">
                     <span class="label-text">Confirmation</span>
                 </label>

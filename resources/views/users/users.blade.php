@@ -12,7 +12,7 @@
                 </div>
                 <div>
                     <div>
-                        {{ $user->name }}
+                        id:{{$user->id}}  name:{{ $user->name }}
                     </div>
                     <div>
                         {{-- ユーザ詳細ページへのリンク --}}

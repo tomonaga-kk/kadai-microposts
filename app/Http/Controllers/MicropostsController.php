@@ -27,10 +27,11 @@ class MicropostsController extends Controller
                 'microposts' => $microposts,
             ];
         }
-    
+        
         // dashboardビューでそれらを表示
         return view('dashboard', $data);
     }
+    
     
     public function store(Request $request){
         // バリデーション
@@ -46,6 +47,7 @@ class MicropostsController extends Controller
         // 前のURLへリダイレクトさせる
         return back();
     }
+    
     
     public function destroy(string $id){
         // idの値で投稿を検索して取得

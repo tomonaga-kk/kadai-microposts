@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // 使うコントローラの呼び出し
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserFollowController;
 use App\Http\Controllers\MicropostsController;
 
 /*
